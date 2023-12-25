@@ -1,0 +1,32 @@
+#head {
+    padding-bottom: 30px;
+    padding-right: 30px;
+    background-color: antiquewhite;
+}
+
+#head-title-row {
+    margin-left: 30px;
+    margin-top: 30px;
+}
+
+#head-subtitle-row {
+    margin-left: 30px;
+}
+
+#head-title {
+    font-size: 42px;
+    font-weight: bold;
+    color: rgb(68, 183, 42);
+    letter-spacing: 3px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#head-subtitle {
+    font-size: 16px;
+    font-weight: 300;
+    color: rgb(47, 150, 214);
+    letter-spacing: 2px;
+    cursor: pointer;
+    text-decoration: none;
+}

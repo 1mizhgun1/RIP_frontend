@@ -1,0 +1,9 @@
+#breadcrumbs {
+    margin-left: 30px;
+    margin-top: 20px;
+    font-size: 16px;
+    border: 1px solid grey;
+    padding: 3px;
+    border-radius: 5px;
+    background-color: antiquewhite;
+}

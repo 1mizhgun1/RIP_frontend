@@ -1,0 +1,12 @@
+body {
+    font-family: "Open Sans", sans-serif;
+    overflow-x: hidden;
+}
+
+#header {
+    margin-left: 30px;
+    display: flex;
+    border: 1px solid grey;
+    border-radius: 5px;
+    /* background-color: rgb(246, 221, 221); */
+}

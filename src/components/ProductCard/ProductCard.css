@@ -1,0 +1,83 @@
+.card {
+    width: 300px;
+    height: 450px;
+    border: groove 1px rgb(216, 216, 216);
+    text-align: center;
+    margin-left: 40px;
+    margin-top: 30px;
+}
+
+.cardImageWrap {
+    width: 300px;
+    height: 300px;
+}
+
+.cardImage {
+    width: 250px;
+    height: auto;
+    position: relative;
+    left: -42%;
+    top: 42%;
+    transform: translate(50%, -50%);
+}
+
+.cardTitleWrap {
+    position: relative;
+    width: 250px;
+    height: 50px;
+    top: -40px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.cardTitleWrap > a {
+    text-decoration: none;
+}
+
+.cardTitle {
+    position: relative;
+    line-height: 1.5;
+    color: rgb(0, 107, 213);
+    text-decoration: none;
+}
+
+.cardTitle:hover {
+    color: rgb(121, 0, 213);
+    text-decoration: underline;
+}
+
+.cardPrice {
+    width: max-content;
+    height: max-content;
+    position: relative;
+    margin-top: 15px;
+    font-size: 22px;
+    font-weight: 300;
+    left: 50%;
+    top: -40px;
+    transform: translateX(-50%);
+}
+
+.cardStatusGreen,
+.cardStatusRed {
+    width: max-content;
+    height: max-content;
+    position: relative;
+    padding: 6px;
+    margin-top: -15px;
+    left: 50%;
+    top: -25px;
+    transform: translateX(-50%);
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 12px;
+    color: white;
+}
+
+.cardStatusGreen {
+    background-color: #00B90E;
+}
+
+.cardStatusRed {
+    background-color: #ff7200;
+}
