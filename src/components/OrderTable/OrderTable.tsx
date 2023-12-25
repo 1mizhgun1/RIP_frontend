@@ -31,35 +31,58 @@ const getStatusColor = (status: string) => {
 }
 
 const OrderTable: FC<Props> = ({ orders, is_moderator, processStatusUpdate }) => {
-    return (
-        <Container id="order-table" style={{ marginTop: "20px", marginBottom: "50px", width: "90%", position: "relative", left: "5%" }}>
-            <Row className="order-table-header" style={{ display: "flex", padding: "15px" }}>
-                <Col className="order-table-head" style={{ width: "12%" }}><h2>Номер</h2></Col>
-                <Col className="order-table-head" style={{ width: "20%" }}><h2>Пользователь</h2></Col>
-                <Col className="order-table-head" style={{ width: "24%" }}><h2>Дата и время отправки</h2></Col>
-                <Col className="order-table-head" style={{ width: "12%" }}><h2>Статус</h2></Col>
-                <Col className="order-table-head" style={{ width: "12%" }}><h2>Оплата</h2></Col>
-                <Col className="order-table-head" style={{ width: "20%" }}><h2>Действия</h2></Col>
-            </Row>
-            {orders.map((order, index) => (
-                <Row className="order-table-row" key={index} style={{ display: "flex", padding: "15px", backgroundColor: `${getStatusColor(order.status)}`, borderTop: "2px groove black" }}>
-                    <Col className="order-table-col" style={{ width: "12%" }}><h2>{order.pk}</h2></Col>
-                    <Col className="order-table-col" style={{ width: "20%" }}><h2>{order.username}</h2></Col> 
-                    <Col className="order-table-col" style={{ width: "24%" }}><h2>{order.send}</h2></Col>
-                    <Col className="order-table-col" style={{ width: "12%" }}><h2>{order.status}</h2></Col>
-                    <Col className="order-table-col" style={{ width: "12%" }}><h2>{order.payment}</h2></Col>
-                    <Col className="order-table-col" style={{ width: "20%", display: "flex", flexDirection: "column" }}>
-                        <a href={`/orders/${order.pk}`}><h2>посмотреть</h2></a>
-                        {is_moderator && order.status == 'отправлен' && 
-                        <div style={{ display: "flex" }}>
-                            <button className="accept-button" onClick={() => processStatusUpdate(order.pk, 'A')}>Принять</button>
-                            <button className="reject-button" onClick={() => processStatusUpdate(order.pk, 'W')}>Отклонить</button>
-                        </div>}
-                    </Col>
+    if (is_moderator) {
+        return (
+            <Container id="order-table" style={{ marginTop: "20px", marginBottom: "50px", width: "90%", position: "relative", left: "5%" }}>
+                <Row className="order-table-header" style={{ display: "flex", padding: "15px" }}>
+                    <Col className="order-table-head" style={{ width: "12%" }}><h2>Номер</h2></Col>
+                    <Col className="order-table-head" style={{ width: "20%" }}><h2>Пользователь</h2></Col>
+                    <Col className="order-table-head" style={{ width: "24%" }}><h2>Дата и время отправки</h2></Col>
+                    <Col className="order-table-head" style={{ width: "12%" }}><h2>Статус</h2></Col>
+                    <Col className="order-table-head" style={{ width: "12%" }}><h2>Оплата</h2></Col>
+                    <Col className="order-table-head" style={{ width: "20%" }}><h2>Действия</h2></Col>
                 </Row>
-            ))}
-        </Container>
-    )
+                {orders.map((order, index) => (
+                    <Row className="order-table-row" key={index} style={{ display: "flex", padding: "15px", backgroundColor: `${getStatusColor(order.status)}`, borderTop: "2px groove black" }}>
+                        <Col className="order-table-col" style={{ width: "12%" }}><h2>{order.pk}</h2></Col>
+                        <Col className="order-table-col" style={{ width: "20%" }}><h2>{order.username}</h2></Col> 
+                        <Col className="order-table-col" style={{ width: "24%" }}><h2>{order.send}</h2></Col>
+                        <Col className="order-table-col" style={{ width: "12%" }}><h2>{order.status}</h2></Col>
+                        <Col className="order-table-col" style={{ width: "12%" }}><h2>{order.payment}</h2></Col>
+                        <Col className="order-table-col" style={{ width: "20%", display: "flex", flexDirection: "column" }}>
+                            <a href={`/orders/${order.pk}`}><h2>посмотреть</h2></a>
+                            {order.status == 'отправлен' && 
+                            <div style={{ display: "flex" }}>
+                                <button className="accept-button" onClick={() => processStatusUpdate(order.pk, 'A')}>Принять</button>
+                                <button className="reject-button" onClick={() => processStatusUpdate(order.pk, 'W')}>Отклонить</button>
+                            </div>}
+                        </Col>
+                    </Row>
+                ))}
+            </Container>
+        )
+    } else {
+        return (
+            <Container id="order-table" style={{ marginTop: "20px", marginBottom: "50px", width: "90%", position: "relative", left: "5%" }}>
+                <Row className="order-table-header" style={{ display: "flex", padding: "15px" }}>
+                    <Col className="order-table-head" style={{ width: "15%" }}><h2>Номер</h2></Col>
+                    <Col className="order-table-head" style={{ width: "25%" }}><h2>Дата и время отправки</h2></Col>
+                    <Col className="order-table-head" style={{ width: "20%" }}><h2>Статус</h2></Col>
+                    <Col className="order-table-head" style={{ width: "20%" }}><h2>Оплата</h2></Col>
+                    <Col className="order-table-head" style={{ width: "20%" }}><h2>Действия</h2></Col>
+                </Row>
+                {orders.map((order, index) => (
+                    <Row className="order-table-row" key={index} style={{ display: "flex", padding: "15px", backgroundColor: `${getStatusColor(order.status)}`, borderTop: "2px groove black" }}>
+                        <Col className="order-table-col" style={{ width: "15%" }}><h2>{order.pk}</h2></Col>
+                        <Col className="order-table-col" style={{ width: "25%" }}><h2>{order.send}</h2></Col>
+                        <Col className="order-table-col" style={{ width: "20%" }}><h2>{order.status}</h2></Col>
+                        <Col className="order-table-col" style={{ width: "20%" }}><h2>{order.payment}</h2></Col>
+                        <Col className="order-table-col" style={{ width: "20%", display: "flex", flexDirection: "column" }}><a href={`/orders/${order.pk}`}><h2>посмотреть</h2></a></Col>
+                    </Row>
+                ))}
+            </Container>
+        )
+    }
 }
 
 export default OrderTable;
