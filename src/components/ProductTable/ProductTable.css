@@ -83,3 +83,28 @@
 .create-product-button:hover {
     background-color: rgb(129, 231, 105);
 }
+
+.table-add-button {
+    margin-left: 10px;
+    border-radius: 7px;
+    width: 120px;
+    height: 40px;
+    font-size: 18px;
+    background-color: rgb(187, 187, 250);
+    cursor: pointer;
+    text-align: center;
+}
+
+.table-add-button-grey {
+    margin-left: 10px;
+    border-radius: 7px;
+    width: 120px;
+    height: 40px;
+    font-size: 18px;
+    background-color: rgb(152, 152, 152);
+    text-align: center;
+}
+
+.table-add-button:hover {
+    background-color: rgb(158, 158, 244);
+}
