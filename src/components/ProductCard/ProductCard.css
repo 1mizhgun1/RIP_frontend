@@ -15,6 +15,7 @@
 .cardImage {
     width: 250px;
     height: auto;
+    max-height: 200px;
     position: relative;
     left: -42%;
     top: 50%;

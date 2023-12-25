@@ -3,6 +3,8 @@ import axios from "axios";
 
 import { useSsid } from './useSsid';
 import { updateUser, cleanUser } from "../store/authSlice";
+import { cleanValues } from '../store/productFilterSlice';
+import { cleanOrderFilter } from '../store/orderFilterSlice';
 
 
 export function useAuth() {
@@ -19,6 +21,14 @@ export function useAuth() {
         dispatch(cleanUser())
     }
 
+    const resetValues = () => {
+        dispatch(cleanValues())
+    }
+
+    const resetOrderFilter = () => {
+        dispatch(cleanOrderFilter())
+    }
+
     const logout = async () => {
         try {
             const response = await axios(`http://localhost:8080/accounts/logout/`, {
@@ -31,6 +41,8 @@ export function useAuth() {
             if (response.status == 200) {
                 resetSsid()
                 resetUser()
+                resetValues()
+                resetOrderFilter()
             }
         } catch (error) {
             console.log("Что-то пошло не так")
@@ -49,30 +61,6 @@ export function useAuth() {
         if (response.status == 201) {
             setSsid(response.data['session_id'])
 
-            const data = {
-                is_authenticated: true,
-                is_moderator: response.data["is_moderator"],
-                user_id: response.data["pk"],
-                username: response.data["username"],
-            }
-
-            setUser(data)
-            return true
-        }
-        return false
-    }
-
-
-    const auth = async () => {
-        const response = await axios(`http://localhost:8080/accounts/check/`, {
-            method: "POST",
-            headers: {
-                "Content-type": "application/json; charset=UTF-8",
-                'authorization': session_id
-            },
-        })
-
-        if (response.status == 200) {
             const data = {
                 is_authenticated: true,
                 is_moderator: response.data["is_moderator"],
@@ -105,7 +93,6 @@ export function useAuth() {
         setUser,
         logout,
         login,
-        auth,
         register
     }
 }

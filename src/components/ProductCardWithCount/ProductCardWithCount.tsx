@@ -60,13 +60,13 @@ const ProductCardWithCount: FC<ProductCardData> = ({ pk, title, price, image, cn
             <Card.Text className="cardPrice">{price.toString()+" ₽"}</Card.Text>
             {can_change_cnt ?
             <div style={{ position: "relative", top: "-30px" }}>
-                <h4 className="cardStatusGreen" style={{ position: "relative", top: "0px" }}>вы добавили:</h4>
+                <h4 className="cardStatusGreen" style={{ position: "relative", top: "0px" }}>добавлено:</h4>
                 <button style={{ position: "relative", left: "-20px", width: "40px", height: "30px", backgroundColor: "rgb(237, 104, 137)", fontSize: "18px" }} onClick={handleMinus}>-</button>
                 <span style={{ color: "rgb(24, 125, 188)", fontSize: "18px" }}>{`${count} шт.`}</span>
                 <button style={{ position: "relative", left: "20px", width: "40px", height: "30px", backgroundColor: "rgb(165, 255, 145)", fontSize: "18px" }} onClick={handlePlus}>+</button>
             </div> :
             <div style={{ position: "relative", top: "-30px" }}>
-                <h4 className="cardStatusGreen" style={{ position: "relative", top: "0px" }}>вы приобрели:</h4>
+                <h4 className="cardStatusGreen" style={{ position: "relative", top: "0px" }}>приобретено:</h4>
                 <span style={{ color: "rgb(24, 125, 188)", fontSize: "18px" }}>{`${count} шт.`}</span>
             </div>}
         </Card>

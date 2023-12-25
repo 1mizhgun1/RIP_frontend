@@ -1,1 +1,1 @@
-client interface with redux state
+homework with moderator interface

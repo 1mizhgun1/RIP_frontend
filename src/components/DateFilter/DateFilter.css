@@ -1,7 +1,0 @@
-#filter-date {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    flex-shrink: 0;
-}

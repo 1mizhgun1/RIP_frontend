@@ -84,7 +84,7 @@ const OrderPage: FC = () => {
                     'authorization': session_id
                 }
             })
-            navigate('/products')
+            navigate('/')
         } catch (error) {
             console.log(error)
         }
@@ -103,7 +103,9 @@ const OrderPage: FC = () => {
             })
                 
             if (response.data == "undefined") {
-                navigate('/products')
+                navigate('/')
+            } else {
+                setData(response.data)
             }
         } catch (error) {
             console.log(error)

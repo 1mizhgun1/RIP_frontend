@@ -1,17 +1,21 @@
-import { FC } from "react";
+import { Dispatch, FC } from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
 import "./Filter.css";
-import { useProductFilter } from "../../hooks/useProductFilter";
+// import { useProductFilter } from "../../hooks/useProductFilter";
 
 
 interface FilterData {
+    searchValue: string,
+    setSearchValue: Dispatch<string>,
+    minPriceValue: number | undefined,
+    setMinPriceValue: Dispatch<number>,
+    maxPriceValue: number | undefined,
+    setMaxPriceValue: Dispatch<number>,
     send: () => any,
 }
 
-const Filter: FC<FilterData> = ({ send }) => {
-    const { searchValue, minPriceValue, maxPriceValue, setSearchValue, setMinPriceValue, setMaxPriceValue } = useProductFilter()
-
+const Filter: FC<FilterData> = ({ searchValue, minPriceValue, maxPriceValue, setSearchValue, setMinPriceValue, setMaxPriceValue, send }) => {
     return (
         <Container id="filter">
             <Row><h3 className="filter-title">Фильтр</h3></Row>

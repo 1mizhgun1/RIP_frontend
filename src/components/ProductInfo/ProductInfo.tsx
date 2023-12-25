@@ -4,6 +4,7 @@ import { useSsid } from '../../hooks/useSsid';
 import axios from "axios";
 
 import './ProductInfo.css'
+import ImageWrapper from '../ImageWrapper/ImageWrapper';
 
 
 export interface Param {
@@ -22,7 +23,7 @@ interface Props {
 
 const ProductInfo: FC<Props> = ({pk, title, price, cnt, parameters, image }) => {
     const { session_id } = useSsid()
-    const { is_authenticated } = useAuth()
+    const { is_authenticated, is_moderator } = useAuth()
 
     const addToCart = async (product_id: number) => {
         await axios(`http://localhost:8080/products/${product_id}/`, {
@@ -38,7 +39,7 @@ const ProductInfo: FC<Props> = ({pk, title, price, cnt, parameters, image }) => 
             <div className="product-info" key={pk.toString()}>
                 <h4 className="product-title">{title}</h4>
                 <div className="product-image-wrap">
-                    <img src={image} alt="картинка" className="product-image" />
+                    <ImageWrapper className="product-image" src={image} based="/default.jpg" />
                 </div>
                 <input type="radio" name="radio" id="product-params" defaultChecked />
                 <input type="radio" name="radio" id="product-reviews" />
@@ -67,7 +68,7 @@ const ProductInfo: FC<Props> = ({pk, title, price, cnt, parameters, image }) => 
                     <h4 className="product-price-text">Цена:</h4>
                     <h4 className="product-price">{price.toString()+" ₽"}</h4>
                 </div>
-                {cnt != 0 && is_authenticated ? <button className="product-to-cart-green" type="button" onClick={ () => addToCart(pk) }>В корзину</button> : <button className="product-to-cart-grey" type="button">В корзину</button>}
+                {!is_moderator && cnt != 0 && is_authenticated ? <button className="product-to-cart-green" type="button" onClick={ () => addToCart(pk) }>В корзину</button> : <button className="product-to-cart-grey" type="button">В корзину</button>}
                 {!is_authenticated  && <h5 className="help-text">Авторизуйтесь, чтобы использовать корзину</h5>}
             </div>
         </div>

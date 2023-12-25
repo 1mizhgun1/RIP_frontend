@@ -11,8 +11,8 @@ const Breadcrumbs: FC<{ pages: BreadcrumbsProps[] }> = ({ pages }) =>  (
     <Container id="breadcrumbs">
         <Row>
             <a href='/' style={{ textDecoration: "None", color: "rgb(24, 125, 188)" }}>🏠 главная</a>
-            {pages && pages.map((page) => (
-                <a href={ page.link } style={{ textDecoration: "None", color: "rgb(24, 125, 188)" }}>{ ` >>> ${page.title}` }</a>
+            {pages && pages.map((page, index) => (
+                <a href={ page.link } key={index} style={{ textDecoration: "None", color: "rgb(24, 125, 188)" }}>{ ` >>> ${page.title}` }</a>
             ))}
         </Row>
     </Container>
