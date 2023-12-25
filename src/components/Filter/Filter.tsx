@@ -1,20 +1,17 @@
-import { FC, Dispatch } from "react";
+import { FC } from "react";
 
 import { Container, Row, Col } from "react-bootstrap";
 import "./Filter.css";
+import { useProductFilter } from "../../hooks/useProductFilter";
 
 
 interface FilterData {
-    search: string,
-    setSearch: Dispatch<string>,
-    minPrice: number | undefined,
-    setMinPrice: Dispatch<number>,
-    maxPrice: number | undefined,
-    setMaxPrice: Dispatch<number>,
-    send: (prevCount: any) => any,
+    send: () => any,
 }
 
-const Filter: FC<FilterData> = ({ search, setSearch, minPrice, setMinPrice, maxPrice, setMaxPrice, send }) => {
+const Filter: FC<FilterData> = ({ send }) => {
+    const { searchValue, minPriceValue, maxPriceValue, setSearchValue, setMinPriceValue, setMaxPriceValue } = useProductFilter()
+
     return (
         <Container id="filter">
             <Row><h3 className="filter-title">Фильтр</h3></Row>
@@ -29,8 +26,8 @@ const Filter: FC<FilterData> = ({ search, setSearch, minPrice, setMinPrice, maxP
                                 type="number"
                                 placeholder="мин. цена"
                                 name="price_min"
-                                value={minPrice}
-                                onChange={(e) => setMinPrice(parseInt(e.target.value))}
+                                value={minPriceValue}
+                                onChange={(e) => setMinPriceValue(parseInt(e.target.value))}
                             />
                         </Col>
                         <Col><h4 className="filter-text up">до</h4></Col>
@@ -39,8 +36,8 @@ const Filter: FC<FilterData> = ({ search, setSearch, minPrice, setMinPrice, maxP
                                 type="number"
                                 placeholder="макс. цена"
                                 name="price_max"
-                                value={maxPrice}
-                                onChange={(e) => setMaxPrice(parseInt(e.target.value))}
+                                value={maxPriceValue}
+                                onChange={(e) => setMaxPriceValue(parseInt(e.target.value))}
                             />
                         </Col>
                     </Row>
@@ -54,8 +51,8 @@ const Filter: FC<FilterData> = ({ search, setSearch, minPrice, setMinPrice, maxP
                             size={30}
                             placeholder="Название"
                             name="title"
-                            value={search}
-                            onChange={(e) => setSearch(e.target.value)}
+                            value={searchValue}
+                            onChange={(e) => setSearchValue(e.target.value)}
                         />
                     </Row>
                 </Container>

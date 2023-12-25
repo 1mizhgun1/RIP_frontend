@@ -21,7 +21,7 @@ interface Product {
 }
 
 interface Response {
-    orderID: number,
+    order: number,
     products: Product[]
 }
 
@@ -58,7 +58,7 @@ const getDefaultProductList = (count: number, searchValue: string, minPriceValue
 
 export const getDefaultResponse = (count: number, searchValue: string, minPriceValue: number | undefined, maxPriceValue: number | undefined): Response => {
     return {
-        orderID: -1,
+        order: -1,
         products: getDefaultProductList(count, searchValue, minPriceValue, maxPriceValue)
     }
 }

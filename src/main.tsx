@@ -1,36 +1,51 @@
-import ReactDOM from 'react-dom/client'
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "react-query";
+import { Provider } from "react-redux";
 
-import HeadTitle from './components/HeadTitle/HeadTitle'
-import Navbar from './components/Navbar/Navbar'
-// import MainPage from './pages/MainPage/MainPage';
-import ProductListPage from './pages/ProductList/ProductList'
-import ProductPage from './pages/Product/Product'
+import ProductListPage from "./pages/ProductListPage/ProductListPage.tsx";
+import ProductPage from "./pages/ProductPage/ProductPage.tsx";
+import LoginPage from "./pages/LoginPage/LoginPage.tsx";
+import RegisterPage from "./pages/RegisterPage/RegisterPage.tsx";
+import ProfilePage from "./pages/ProfilePage/ProfilePage.tsx";
+import OrderListPage from "./pages/OrderListPage/OrderListPage.tsx";
+import OrderPage from "./pages/OrderPage/OrderPage.tsx";
 
-import "./main.css"
+import Navbar from "./components/Navbar/Navbar.tsx";
 
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
+import store from "./store/store.ts";
 
-const router = createBrowserRouter([
-    {
-        path: `/`,
-        element: <ProductListPage />
-    },
-    {
-        path: `/products/:id/`,
-        element: <ProductPage />
-    }
-])
-  
-ReactDOM.createRoot(document.getElementById('root')!).render(
-    <Container>
-        <Row id="header">
-            <HeadTitle />
-            <Navbar />
-        </Row>
-        <Row>
-            <RouterProvider router={router} />
-        </Row>
-    </Container>
-)
+import { Container, Row } from "react-bootstrap";
+import "./main.css";
+
+
+const root = ReactDOM.createRoot(
+    document.getElementById('root') as HTMLElement
+);
+
+const queryClient = new QueryClient();
+
+root.render(
+    <QueryClientProvider client={ queryClient }>
+        <Provider store={ store }>
+            <BrowserRouter>
+                <Container>
+                    <Navbar />
+                    <Row>
+                        {/* <Breadcrumbs /> */}
+                        <Routes>
+                            <Route path="/"             element={ <Navigate to="/products" replace /> } />
+                            <Route path="products/"     element={ <ProductListPage /> } />
+                            <Route path="products/:id"  element={ <ProductPage /> } />
+                            <Route path="login/"        element={ <LoginPage /> } />
+                            <Route path="register/"     element={ <RegisterPage /> } />
+                            <Route path="profile/"      element={ <ProfilePage /> } />
+                            <Route path="orders/"       element={ <OrderListPage /> } />
+                            <Route path="orders/:id"    element={ <OrderPage /> } />
+                        </Routes>
+                    </Row>
+                </Container>
+            </BrowserRouter>
+        </Provider>
+    </QueryClientProvider>
+);

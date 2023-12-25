@@ -1,0 +1,8 @@
+#register-button {
+    border-radius: 7px;
+    width: 200px;
+    height: 40px;
+    font-size: 18px;
+    background-color: rgb(187, 187, 250);
+    cursor: pointer;
+}

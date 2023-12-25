@@ -1,1 +1,1 @@
-basic interface with 2 pages for guests
+client interface with redux state

@@ -181,7 +181,7 @@
 .product-to-cart-grey {
     position: relative;
     top: 30px;
-    left: 33%;
+    left: 50%;
     transform: translateX(-50%);
     width: 350px;
     padding: 7px;
@@ -190,4 +190,13 @@
     background-color: rgb(152, 152, 152);
     border: none;
     border-radius: 10px;
+}
+
+.help-text {
+    position: relative;
+    top: 30px;
+    left: 50%;
+    transform: translateX(-33%);
+    margin-top: 5px;
+    font-weight: 300;
 }
