@@ -11,7 +11,6 @@ import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs";
 import ProductTable from "../../components/ProductTable/ProductTable";
 import { useNavigate } from "react-router-dom";
 import Filter from "../../components/Filter/Filter";
-import CartButton from "../../components/CartButton/CartButton";
 
 interface Product {
     pk: number,
@@ -57,7 +56,7 @@ const ProductTablePage: FC = () => {
 
     const getFilteredProducts = async () => {
         try {
-            const { data } = await axios(`http://127.0.0.1:8080/products/`, {
+            const { data } = await axios(`http://127.0.0.1:8080/products/?status=A`, {
                 method: "GET",
                 headers: {
                     'authorization': session_id
@@ -76,16 +75,6 @@ const ProductTablePage: FC = () => {
         } catch (error) {
             setResponse(getDefaultResponse(3, searchValue, minPriceValue, maxPriceValue))
         }
-    }
-
-    const addToCart = async (product_id: number) => {
-        await axios(`http://localhost:8080/products/${product_id}/`, {
-            method: "POST",
-            headers: {
-                'authorization': session_id
-            },
-        })
-        await getFilteredProducts()
     }
 
     const deleteProduct = async (id: number) => {
@@ -129,9 +118,8 @@ const ProductTablePage: FC = () => {
     return (
         <> {loading ? <Loader /> :
         <Container>
-            { response && <CartButton cartID={ response.order } />}
             <Row>
-                <Breadcrumbs pages={[]} />
+                <Breadcrumbs pages={[ { link: '/product-table', title: 'редактирование' } ]} />
             </Row>
             <Row style={{ display: "flex" }}>
                 <Col style={{ width: "22%", marginLeft: "30px", marginTop: "30px", display: "flex", flexDirection: "column" }}>
@@ -148,7 +136,6 @@ const ProductTablePage: FC = () => {
                 </Col>
                 <ProductTable
                     products={getTransformedData()}
-                    addToCart={addToCart}
                     deleteProduct={deleteProduct}
                 />
             </Row>

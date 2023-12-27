@@ -17,11 +17,10 @@ interface ProductTableItem {
 
 interface Props {
     products: ProductTableItem[]
-    addToCart: (id: number) => Promise<any>
     deleteProduct: (id: number) => Promise<any>
 }
 
-const ProductTable: FC<Props> = ({ products, addToCart, deleteProduct }) => {
+const ProductTable: FC<Props> = ({ products, deleteProduct }) => {
     const navigate = useNavigate()
 
     const getTextStatus = (product: ProductTableItem) => {
@@ -49,12 +48,7 @@ const ProductTable: FC<Props> = ({ products, addToCart, deleteProduct }) => {
             {products.map((product, index) => (
                 <Row className="product-table-row" key={index} style={{ display: "flex", padding: "15px", backgroundColor: `${getStatusColor(product.status)}`, borderTop: "2px groove black" }}>
                     <Col className="product-table-col" style={{ width: "20%" }}><h2>{product.title}</h2></Col> 
-                    <Col className="product-table-col" style={{ width: "13%", display: "flex", flexDirection: "column" }}>
-                        <h2>{product.price} ₽</h2>
-                        {product.cnt > 0 ?
-                        <button className="table-add-button" onClick={() => {addToCart(product.pk)}}>В корзину</button> :
-                        <button className="table-add-button-grey">В корзину</button>}
-                    </Col>
+                    <Col className="product-table-col" style={{ width: "13%", display: "flex", flexDirection: "column" }}><h2>{product.price} ₽</h2></Col>
                     <Col className="product-table-col" style={{ width: "13%" }}><h2>{product.cnt} шт.</h2></Col>
                     <Col className="product-table-col" style={{ width: "13%", display: "flex", flexDirection: "column" }}>
                         <h2>{getTextStatus(product)}</h2>

@@ -37,10 +37,10 @@ const Navbar: FC = () => {
             <Col style={{ width: "60%", marginLeft: "30px" }}>
                 <a className="navbar-button" href="/">Товары</a>
             </Col>
-            <Col style={{ width: "10%", marginLeft: "30px" }}>
+            <Col style={{ width: "15%", marginLeft: "30px" }}>
                 <a className="navbar-button" href="/orders">Заказы</a>
             </Col>
-            <Col style={{ width: "20%", marginLeft: "30px" }}>
+            <Col style={{ width: "25%", marginLeft: "30px" }}>
                 <a className="navbar-button" href="#" onClick={ handleLogout }>{`${username}: выход`}</a>
             </Col>
         </Row>
@@ -48,13 +48,16 @@ const Navbar: FC = () => {
 
     const getModerNavbar = () => (
         <Row id="navbar-row" style={{ display: "flex", marginTop: "47px" }}>
-            <Col style={{ width: "60%", marginLeft: "30px" }}>
+            <Col style={{ width: "15%", marginLeft: "30px" }}>
                 <a className="navbar-button" href="/">Товары</a>
             </Col>
-            <Col style={{ width: "10%", marginLeft: "30px" }}>
+            <Col style={{ width: "45%", marginLeft: "30px" }}>
+                <a className="navbar-button" href="/product-table">Редактирование</a>
+            </Col>
+            <Col style={{ width: "15%", marginLeft: "30px" }}>
                 <a className="navbar-button" href="/orders">Заказы</a>
             </Col>
-            <Col style={{ width: "20%", marginLeft: "30px" }}>
+            <Col style={{ width: "25%", marginLeft: "30px" }}>
                 <a className="navbar-button" href="#" onClick={ handleLogout }>{`${username}: выход`}</a>
             </Col>
         </Row>

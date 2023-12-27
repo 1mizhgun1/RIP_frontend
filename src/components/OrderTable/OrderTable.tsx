@@ -43,7 +43,7 @@ const OrderTable: FC<Props> = ({ orders, is_moderator, processStatusUpdate }) =>
                     <Col className="order-table-head" style={{ width: "20%" }}><h2>Действия</h2></Col>
                 </Row>
                 {orders.map((order, index) => (
-                    <Row className="order-table-row" key={index} style={{ display: "flex", padding: "15px", backgroundColor: `${getStatusColor(order.status)}`, borderTop: "2px groove black" }}>
+                    <Row className="order-table-row" key={index} style={{ display: "flex", padding: "15px", backgroundColor: `${getStatusColor(order.status)}` }}>
                         <Col className="order-table-col" style={{ width: "12%" }}><h2>{order.pk}</h2></Col>
                         <Col className="order-table-col" style={{ width: "20%" }}><h2>{order.username}</h2></Col> 
                         <Col className="order-table-col" style={{ width: "24%" }}><h2>{order.send}</h2></Col>

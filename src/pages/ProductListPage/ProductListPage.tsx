@@ -16,7 +16,6 @@ import "./ProductListPage.css";
 
 import { useDispatch, useStore } from 'react-redux';
 import { updateMaxPriceValue, updateMinPriceValue, updateSearchValue } from '../../store/productFilterSlice.ts';
-import { useNavigate } from 'react-router-dom';
 
 
 export interface Product {
@@ -59,11 +58,8 @@ const ProductListPage: FC = () => {
     const [ maxPriceValue, setMaxPriceValue ] = useState<number | undefined> (useStore().getState().productFilter.maxPriceValue)
 
     const { session_id } = useSsid()
-    const { is_authenticated, is_moderator } = useAuth()
+    const { is_authenticated } = useAuth()
     const dispatch = useDispatch()
-    const navigate = useNavigate()
-
-    is_moderator && navigate('/')
 
     const getFilteredProducts = async () => {
         try {

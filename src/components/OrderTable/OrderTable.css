@@ -50,3 +50,12 @@
 .reject-button:hover {
     background-color: rgb(237, 104, 137);
 }
+
+.order-table-row {
+    border-top: 2px groove black;
+}
+
+.order-table-row:hover {
+    scale: 1.03;
+    border: 4px groove black;
+}
