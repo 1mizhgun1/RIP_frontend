@@ -2,7 +2,7 @@
     background-color: antiquewhite;
 }
 
-.navbar-button {
+.cart-button {
     text-decoration: none;
     font-size: 24px;
     font-weight: 500;
@@ -14,8 +14,20 @@
     background-color: rgb(250, 218, 181);
 }
 
-.navbar-button:hover {
+.cart-button:hover {
     background-color: rgb(251, 234, 213);
+}
+
+.navbar-button {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: rgb(24, 125, 188);
+}
+
+.navbar-button:hover {
+    color: rgb(20, 9, 119);
 }
 
 #disabled-cart {

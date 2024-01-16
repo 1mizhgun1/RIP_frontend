@@ -6,9 +6,9 @@ interface Props {
 
 const CartButton: FC<Props> = ({ cartID }) => {
     return (
-        <div style={{ position: 'relative', top: '-81px', left: '58%', width: 'max-content' }}>{
+        <div style={{ position: 'relative', top: '-81px', left: '350px', width: 'max-content' }}>{
             cartID != -1 ?
-            <a className="navbar-button" href={`/orders/${cartID}`}>Корзина</a> :
+            <a className="cart-button" href={`/orders/${cartID}`}>Корзина</a> :
             <a href="#" id="disabled-cart" className="disabled">Корзина</a>
         }</div>
     )
