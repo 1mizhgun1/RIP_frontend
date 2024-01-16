@@ -23,10 +23,6 @@ interface Props {
 const ProductTable: FC<Props> = ({ products, deleteProduct }) => {
     const navigate = useNavigate()
 
-    const getTextStatus = (product: ProductTableItem) => {
-        return (product.status == 'A' ? 'активен' : 'удалён')
-    }
-
     const getStatusColor = (status: 'A' | 'N') => {
         if (status == 'A') {
             return "rgb(165, 255, 145)"
@@ -41,25 +37,21 @@ const ProductTable: FC<Props> = ({ products, deleteProduct }) => {
                 <Col className="product-table-head" style={{ width: "20%" }}><h2>Название</h2></Col>
                 <Col className="product-table-head" style={{ width: "13%" }}><h2>Цена</h2></Col>
                 <Col className="product-table-head" style={{ width: "13%" }}><h2>Кол-во</h2></Col>
-                <Col className="product-table-head" style={{ width: "13%" }}><h2>Статус</h2></Col>
                 <Col className="product-table-head" style={{ width: "28%" }}><h2>Картинка</h2></Col>
-                <Col className="product-table-head" style={{ width: "13%" }}><h2>Действия</h2></Col>
+                <Col className="product-table-head" style={{ width: "26%" }}><h2>Действия</h2></Col>
             </Row>
-            {products.map((product, index) => (
-                <Row className="product-table-row" key={index} style={{ display: "flex", padding: "15px", backgroundColor: `${getStatusColor(product.status)}`, borderTop: "2px groove black" }}>
+            {products.map((product) => (
+                <Row className="product-table-row" key={product.pk} style={{ display: "flex", padding: "15px", backgroundColor: `${getStatusColor(product.status)}`, borderTop: "2px groove black" }}>
                     <Col className="product-table-col" style={{ width: "20%" }}><h2>{product.title}</h2></Col> 
                     <Col className="product-table-col" style={{ width: "13%", display: "flex", flexDirection: "column" }}><h2>{product.price} ₽</h2></Col>
                     <Col className="product-table-col" style={{ width: "13%" }}><h2>{product.cnt} шт.</h2></Col>
-                    <Col className="product-table-col" style={{ width: "13%", display: "flex", flexDirection: "column" }}>
-                        <h2>{getTextStatus(product)}</h2>
-                        {product.status == 'N' ?
-                        <button className="activate-product-button" onClick={() => deleteProduct(product.pk)}>Вернуть</button> :
-                        <button className="delete-product-button" onClick={() => deleteProduct(product.pk)}>Удалить</button>}
-                    </Col>
                     <Col className="product-table-col" style={{ width: "28%" }}><div><ImageWrapper className="product-table-image" src={product.image} based="/default.jpg" /></div></Col>
-                    <Col className="product-table-col" style={{ width: "13%", display: "flex", flexDirection: "column" }}>
+                    <Col className="product-table-col" style={{ width: "26%", display: "flex", flexDirection: "column" }}>
                         <a href={`/products/${product.pk}`}><h2>посмотреть</h2></a>
-                        <button className="update-product-button" onClick={() => navigate(`/products/${product.pk}/update`)}>Изменить</button>
+                        <div style={{ display: "flex" }}>
+                            <button className="update-product-button" onClick={() => navigate(`/products/${product.pk}/update`)}>Изменить</button>
+                            <button className="delete-product-button" onClick={() => deleteProduct(product.pk)}>Удалить</button>
+                        </div>
                     </Col>
                 </Row>
             ))}

@@ -77,6 +77,15 @@ const ProductTablePage: FC = () => {
         }
     }
 
+    const waitFilteredProducts = async () => {
+        await getFilteredProducts().then(() => {
+            setLoading(false)
+        }).catch((error) => {
+            console.log(error)
+            setLoading(false)
+        })
+    }
+
     const deleteProduct = async (id: number) => {
         try {
             await axios(`http://localhost:8080/products/${id}/`, {
@@ -85,19 +94,14 @@ const ProductTablePage: FC = () => {
                     'authorization': session_id
                 }
             })
-            navigate('/')
+            await waitFilteredProducts()
         } catch (error) {
             console.log(error)
         }
     }
 
     useEffect(() => {
-        getFilteredProducts().then(() => {
-            setLoading(false)
-        }).catch((error) => {
-            console.log(error)
-            setLoading(false)
-        })
+        waitFilteredProducts()
     }, [dispatch])
 
     const getTransformedData = () => {

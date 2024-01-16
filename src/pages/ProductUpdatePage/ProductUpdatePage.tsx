@@ -132,10 +132,10 @@ const ProductUpdatePage: FC = () => {
         })
     }
 
-    const sendForm = async () => {
+    const sendForm = () => {
         if (image) {
             const reader = new FileReader();
-            reader.onloadend = () => {
+            reader.onloadend = async () => {
                 values.image = btoa(reader.result as string)
                 sendData()
             }
@@ -143,7 +143,7 @@ const ProductUpdatePage: FC = () => {
         } else {
             sendData()
         }
-        navigate('/products')
+        navigate('/product-table')
         console.log(values)
     }
 
