@@ -80,7 +80,7 @@ const ProductListPage: FC = () => {
             dispatch(updateMinPriceValue(minPriceValue))
             dispatch(updateMaxPriceValue(maxPriceValue))
         } catch (error) {
-            setResponse(getDefaultResponse(3, searchValue, minPriceValue, maxPriceValue))
+            setResponse(getDefaultResponse(searchValue, minPriceValue, maxPriceValue))
         }
     }
 

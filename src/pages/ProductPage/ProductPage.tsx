@@ -10,6 +10,7 @@ import { Container, Row } from 'react-bootstrap';
 import "./ProductPage.css"
 
 import axios from "axios";
+import { getDefaultProduct } from '../../assets/MockObjects';
 
 
 const ProductPage: FC = () => {
@@ -33,14 +34,19 @@ const ProductPage: FC = () => {
     }
 
     const getProduct = async () => {
-        const { data } = await axios(`http://127.0.0.1:8080/products/${id}/`, {
+        try {
+            const { data } = await axios(`http://127.0.0.1:8080/products/${id}/`, {
                 method: "GET",
                 headers: {
                     'authorization': session_id
                 },
             })
-        setProduct(data);
-        setParameters(getParams(data));
+            setProduct(data);
+            setParameters(getParams(data));
+        } catch (error) {
+            id && setProduct(getDefaultProduct(parseInt(id)))
+            id && setParameters(getParams(getDefaultProduct(parseInt(id))))
+        }
     }
 
     useEffect(() => {

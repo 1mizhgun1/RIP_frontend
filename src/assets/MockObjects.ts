@@ -1,4 +1,6 @@
-import defaultImage from '../assets/default.jpg';
+import image_1 from '../assets/1.jpg';
+import image_2 from '../assets/2.jpg';
+import image_3 from '../assets/3.jpg';
 
 
 interface Product {
@@ -25,40 +27,83 @@ interface Response {
     products: Product[]
 }
 
-const defaultProduct = (id: number): Product => {
+const defaultProduct_1 = (): Product => {
     return {
-        pk: id,
-        title: `Базовые очки ${id}`,
+        pk: 1,
+        title: `Оправа для очков`,
         file_extension: 'jpg',
-        price: id * 1000,
-        cnt: id,
+        price: 9000,
+        cnt: 5,
         status: 'A',
         type: 'frames',
-        param_sex: "мужские",
+        param_sex: "мужская",
         param_material: "пластик",
         param_type: "ободковая",
         param_color: "зелёный",
         param_form: "круглые",
         param_brand: "top market",
         last_modified: "today",
-        image: defaultImage
+        image: image_1
     }
 }
 
-const getDefaultProductList = (count: number, searchValue: string, minPriceValue: number | undefined, maxPriceValue: number | undefined): Product[] => {
-    let result = []
-    for (let i = 1; i <= count; ++i) {
-        result.push(defaultProduct(i))
+const defaultProduct_2 = (): Product => {
+    return {
+        pk: 2,
+        title: `Солнцезащитные очки`,
+        file_extension: 'jpg',
+        price: 4500,
+        cnt: 3,
+        status: 'A',
+        type: 'sunglasses',
+        param_sex: "детские",
+        param_material: "пластик",
+        param_type: "ободковая",
+        param_color: "зелёный",
+        param_form: "круглые",
+        param_brand: "top market",
+        last_modified: "today",
+        image: image_2,
     }
+}
+
+const defaultProduct_3 = (): Product => {
+    return {
+        pk: 3,
+        title: `Контактные линзы`,
+        file_extension: 'jpg',
+        price: 1800,
+        cnt: 14,
+        status: 'A',
+        type: 'lenses',
+        param_time: "3 месяца",
+        param_brand: "top market",
+        last_modified: "today",
+        image: image_3,
+    }
+}
+
+const getDefaultProductList = (searchValue: string, minPriceValue: number | undefined, maxPriceValue: number | undefined): Product[] => {
+    let result = [defaultProduct_1(), defaultProduct_2(), defaultProduct_3()]
     result = result.filter((product) => {
         return (!minPriceValue || product.price >= minPriceValue) && (!maxPriceValue || product.price <= maxPriceValue) && (searchValue == '' || product.title.toLowerCase().includes(searchValue.toLowerCase()))
     })
     return result
 }
 
-export const getDefaultResponse = (count: number, searchValue: string, minPriceValue: number | undefined, maxPriceValue: number | undefined): Response => {
+export const getDefaultProduct = (id: number) => {
+    if (id == 1) {
+        return defaultProduct_1()
+    } else if (id == 2) {
+        return defaultProduct_2()
+    } else {
+        return defaultProduct_3()
+    }
+}
+
+export const getDefaultResponse = (searchValue: string, minPriceValue: number | undefined, maxPriceValue: number | undefined): Response => {
     return {
         order: -1,
-        products: getDefaultProductList(count, searchValue, minPriceValue, maxPriceValue)
+        products: getDefaultProductList(searchValue, minPriceValue, maxPriceValue)
     }
 }
