@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useAuth } from "../../hooks/useAuth"
 
 import Breadcrumbs from "../../components/Breadcrumbs/Breadcrumbs"
@@ -30,7 +30,7 @@ const RegisterPage: FC = () => {
                 <Container style={{ marginLeft: "30px", marginTop: "30px" }}>
                     <Row style={{ display: "flex" }}>
                         <h1 style={{ fontSize: "36px", fontWeight: "500" }}>Регистрация</h1>
-                        <a href="/login" className="form-link"><h3>Вход в аккаунт</h3></a>
+                        <Link to="/login" className="form-link"><h3>Вход в аккаунт</h3></Link>
                     </Row>
                     <form onSubmit={ handleRegister } id="login-form" style={{ marginTop: "30px" }}>
                         <Row>

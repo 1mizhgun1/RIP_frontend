@@ -1,5 +1,5 @@
 import { FC } from 'react'
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import { useAuth } from '../../hooks/useAuth';
 
@@ -22,13 +22,13 @@ const Navbar: FC = () => {
         <Row id="navbar-row" style={{ display: "flex", marginTop: "47px" }}>
             <Col style={{ width: "60%" }}></Col>
             <Col style={{ width: "12%" }}>
-                <a className="navbar-button" href="/">Товары</a>
+                <Link className="navbar-button" to="/">Товары</Link>
             </Col>
             <Col style={{ width: "18%" }}>
-                <a className="navbar-button" href="/register">Регистрация</a>
+                <Link className="navbar-button" to="/register">Регистрация</Link>
             </Col>
             <Col style={{ width: "10%" }}>
-                <a className="navbar-button" href="/login">Вход</a>
+                <Link className="navbar-button" to="/login">Вход</Link>
             </Col>
         </Row>
     )
@@ -37,13 +37,13 @@ const Navbar: FC = () => {
         <Row id="navbar-row" style={{ display: "flex", marginTop: "47px" }}>
             <Col style={{ width: "56%" }}></Col>
             <Col style={{ width: "12%" }}>
-                <a className="navbar-button" href="/">Товары</a>
+                <Link className="navbar-button" to="/">Товары</Link>
             </Col>
             <Col style={{ width: "12%" }}>
-                <a className="navbar-button" href="/orders">Заказы</a>
+                <Link className="navbar-button" to="/orders">Заказы</Link>
             </Col>
             <Col style={{ width: "20%" }}>
-                <a className="navbar-button" href="#" onClick={ handleLogout }>{`${username}: выход`}</a>
+                <Link className="navbar-button" to="#" onClick={ handleLogout }>{`${username}: выход`}</Link>
             </Col>
         </Row>
     )
@@ -52,16 +52,16 @@ const Navbar: FC = () => {
         <Row id="navbar-row" style={{ display: "flex", marginTop: "47px" }}>
             <Col style={{ width: "33%" }}></Col>
             <Col style={{ width: "12%" }}>
-                <a className="navbar-button" href="/">Товары</a>
+                <Link className="navbar-button" to="/">Товары</Link>
             </Col>
             <Col style={{ width: "23%" }}>
-                <a className="navbar-button" href="/product-table">Редактирование</a>
+                <Link className="navbar-button" to="/product-table">Редактирование</Link>
             </Col>
             <Col style={{ width: "12%" }}>
-                <a className="navbar-button" href="/orders">Заказы</a>
+                <Link className="navbar-button" to="/orders">Заказы</Link>
             </Col>
             <Col style={{ width: "20%" }}>
-                <a className="navbar-button" href="#" onClick={ handleLogout }>{`${username}: выход`}</a>
+                <Link className="navbar-button" to="#" onClick={ handleLogout }>{`${username}: выход`}</Link>
             </Col>
         </Row>
     )

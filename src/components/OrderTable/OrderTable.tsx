@@ -2,6 +2,7 @@ import { FC } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 
 import "./OrderTable.css"
+import { Link } from 'react-router-dom'
 
 
 interface Order {
@@ -50,7 +51,7 @@ const OrderTable: FC<Props> = ({ orders, is_moderator, processStatusUpdate }) =>
                         <Col className="order-table-col" style={{ width: "12%" }}><h2>{order.status}</h2></Col>
                         <Col className="order-table-col" style={{ width: "12%" }}><h2>{order.payment}</h2></Col>
                         <Col className="order-table-col" style={{ width: "20%", display: "flex", flexDirection: "column" }}>
-                            <a href={`/orders/${order.pk}`}><h2>посмотреть</h2></a>
+                            <Link to={`/orders/${order.pk}`}><h2>посмотреть</h2></Link>
                             {order.status == 'отправлен' && 
                             <div style={{ display: "flex" }}>
                                 <button className="accept-button" onClick={() => processStatusUpdate(order.pk, 'A')}>Принять</button>
@@ -77,7 +78,7 @@ const OrderTable: FC<Props> = ({ orders, is_moderator, processStatusUpdate }) =>
                         <Col className="order-table-col" style={{ width: "25%" }}><h2>{order.send}</h2></Col>
                         <Col className="order-table-col" style={{ width: "20%" }}><h2>{order.status}</h2></Col>
                         <Col className="order-table-col" style={{ width: "20%" }}><h2>{order.payment}</h2></Col>
-                        <Col className="order-table-col" style={{ width: "20%", display: "flex", flexDirection: "column" }}><a href={`/orders/${order.pk}`}><h2>посмотреть</h2></a></Col>
+                        <Col className="order-table-col" style={{ width: "20%", display: "flex", flexDirection: "column" }}><Link to={`/orders/${order.pk}`}><h2>посмотреть</h2></Link></Col>
                     </Row>
                 ))}
             </Container>

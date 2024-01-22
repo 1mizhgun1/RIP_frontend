@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
 import "./ProductTable.css"
 import ImageWrapper from '../ImageWrapper/ImageWrapper'
@@ -47,7 +47,7 @@ const ProductTable: FC<Props> = ({ products, deleteProduct }) => {
                     <Col className="product-table-col" style={{ width: "13%" }}><h2>{product.cnt} шт.</h2></Col>
                     <Col className="product-table-col" style={{ width: "28%" }}><div><ImageWrapper className="product-table-image" src={product.image} based="/default.jpg" /></div></Col>
                     <Col className="product-table-col" style={{ width: "26%", display: "flex", flexDirection: "column" }}>
-                        <a href={`/products/${product.pk}`}><h2>посмотреть</h2></a>
+                        <Link to={`/products/${product.pk}`}><h2>посмотреть</h2></Link>
                         <div style={{ display: "flex" }}>
                             <button className="update-product-button" onClick={() => navigate(`/products/${product.pk}/update`)}>Изменить</button>
                             <button className="delete-product-button" onClick={() => deleteProduct(product.pk)}>Удалить</button>
